@@ -217,39 +217,71 @@
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Include Base64  -->
     <script type="text/javascript" src="js/convertBase64.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#config-web-app -->
+
+
+
     <script>
         new WOW().init();
-        let arrayz = []
-        // $('.file-upload').file_upload();
-        function getBase64(file) {
-                console.log(file)
-                file.map((file) => {
-                    var reader = new FileReader();
-                    reader.readAsDataURL(file);
-                    reader.onload = function () {
-                        let arr = []
+        // let arrayz = []
+        // // $('.file-upload').file_upload();
+        // function getBase64(file) {
+        //         console.log(file)
+        //         file.map((file) => {
+        //             var reader = new FileReader();
+        //             reader.readAsDataURL(file);
+        //             reader.onload = function () {
+        //                 let arr = []
 
-                        arr.push(reader.result)
-                        getData(arr);
-                    };
-                    reader.onerror = function (error) {
-                        console.log('Error: ', error);
-                    };
-                })
+        //                 arr.push(reader.result)
+        //                 getData(arr);
+        //             };
+        //             reader.onerror = function (error) {
+        //                 console.log('Error: ', error);
+        //             };
+        //         })
             
-        }
-        function getData(data) {
-           console.log(data)
-           console.log('data',data[0])
-           console.log('data1',data[1])
-        }
-        $("#submit").click(function() {
-            let act1 = document.querySelector('#activityOne').files[0];
-            let act2 = document.querySelector('#activityTwo').files[0];
-            let array = [act1,act2];
-            getBase64(array)
+        // }
+        // function getData(data) {
+        //    console.log(data)
+        //    console.log('data',data[0])
+        //    console.log('data1',data[1])
+        // }
 
-            console.log(arrayz)
+        var firebaseConfig = {
+            apiKey: "AIzaSyBAnyyhQdCt7Hy-NIAYGtCUdfD1RjkKh_Y",
+            authDomain: "shotwithpun-247013.firebaseapp.com",
+            databaseURL: "https://shotwithpun-247013.firebaseio.com",
+            projectId: "shotwithpun-247013",
+            storageBucket: "shotwithpun-247013.appspot.com",
+            messagingSenderId: "236612859376",
+            appId: "1:236612859376:web:c8ef160ade17acfb"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var storage = firebase.storage();
+
+        $("#submit").click(function() {
+            // let act1 = document.querySelector('#activityOne').files[0];
+            // let act2 = document.querySelector('#activityTwo').files[0];
+            let web1 = ""
+            var act1 = document.getElementById('activityOne')
+            act1.addEventListener('change', function (e) {
+                var file = e.target.files[0];
+                var storageRef = storage.ref("activity1/"+file.name);
+                var task = storageRef.put(file);
+                task.snapshot.ref.getDownloadURL();
+            });
+
+            console.log("111111", web1);
+            // let array = [act1,act2];
+            // getBase64(array)
+
+            // console.log(arrayz)
             // var text = {
             //     namesurname : $("#name").val() +" "+ $("#surname").val(),
             //     activity1: getBase64(act1),
