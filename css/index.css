@@ -11,6 +11,7 @@
 
 .navbar {
     background-color: transparent;
+    max-height: 80px;
 }
 
 .top-nav-collapse {
@@ -26,3 +27,6 @@
 .button1{
     border-radius: 30px;
 }
+
+  
+
