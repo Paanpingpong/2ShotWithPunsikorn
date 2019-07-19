@@ -1,3 +1,4 @@
+
 .background {
     background: url(../img/1.jpg)no-repeat center fixed;
     background-size: cover;
@@ -28,5 +29,18 @@
     border-radius: 30px;
 }
 
-  
 
+
+#logo {
+    width: 280px; 
+    /* max-width:280px;  */
+    height: auto !important;
+}
+    
+
+@media only screen and (max-width: 375px) {
+    #logo {
+        background: red;
+        width: 190px;
+    }
+}
