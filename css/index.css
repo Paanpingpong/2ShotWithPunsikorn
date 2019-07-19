@@ -40,7 +40,6 @@
 
 @media only screen and (max-width: 375px) {
     #logo {
-        background: red;
         width: 190px;
     }
 }
